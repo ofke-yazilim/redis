@@ -1,0 +1,12 @@
+1- https://github.com/MicrosoftArchive/redis/releases adresi üzerinden windows için redis dosyalarý zip olarak indirilir.
+2- Ýndirilen dosyalar c:/redis adýnda bir klasör oluþturularak içerisine çýkarýlýr.
+3- Çýkarýlan dosyalardan öncelikle redis-server.exe ve ardýndan redis-cli.exe çalýþtýrýlýr ve çalýþýr vaziyette tutulur.
+   Yani gelen siyah ekranlar kapatýlmaz. 
+4- Daha sonra internetten hangi php sürümünü kullanýyorsanýz o sürüme ait php_redis.dll indirilir ve wamp\bin\php\php5.x.xx\ext\
+   klasörü içerisine atýlýr.
+5- php.ini dosyasý açýlarak içersinde uygun yere extension=php_redis.dll yazýlýr.
+6- Redis kullanýma hazýr.
+
+http://www.web-technology-experts-notes.in/2016/12/how-to-install-redis-on-wamp-server.html
+https://scotch.io/tutorials/getting-started-with-redis-in-php
+
