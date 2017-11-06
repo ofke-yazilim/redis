@@ -3,7 +3,8 @@
 
 -------------------------------------------------------------------
 
-# Redis funksiyonlarını içeren class yükleniyor
+//Redis funksiyonlarını içeren class yükleniyor
+
 include 'redis_.php';
 
 $redis = new redis_();
