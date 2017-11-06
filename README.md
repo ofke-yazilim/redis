@@ -1,10 +1,9 @@
 
-FONKSİYONLARIN KULLANIMLARI
+# FONKSİYONLARIN KULLANIMLARI
 
 -------------------------------------------------------------------
 
-//Redis funksiyonlarını içeren class yüklerniyor
-
+# Redis funksiyonlarını içeren class yükleniyor
 include 'redis_.php';
 
 $redis = new redis_();
