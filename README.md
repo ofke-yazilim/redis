@@ -31,7 +31,7 @@ echo $redis->redisCounter(2,"sayac",2);<h4>Sayac 2 arttırılıyor ve ekrana yaz
 
 echo $redis->redisCounter(3,"sayac",1);<h4>Sayac 1 azaltılıyor ve ekrana yazılıyor.</h4>
 
-<h4>hash kullanımı</h4>
+<h2>hash kullanımı</h2>
 
 $redis->setHashSingle("omer","faruk","kesmez");
 
@@ -39,7 +39,7 @@ echo $redis->getHashSingle("omer","faruk")."<br>";
 
 $redis->deleteHash("omer","faruk");<h4>Yukarıda tanımladığım hash değerini siliyorum</h4>
 
-echo "Silindimi : ". $redis->getHashSingle("omer","faruk")."<br>";
+echo "Silindimi : ". $redis->getHashSingle("omer","faruk");
 
 $data = array("name"=>"ömer faruk","surname"=>"KESMEZ","yaş"=>27,"meslek"=>"mühendis");
 
@@ -49,8 +49,6 @@ print_r($redis->getHashFull("all"));<h4>Tanımladığım hash değerini array ol
 
 $redis->deleteHash("all");<h4>Tanımlanmış hash siliniyor</h4>
 
-echo  "<br>-------------------------------<br>Silindimi : <br>";
-
-print_r($redis->getHashFull("all"));<h4>Tanımladığım hash değerini array olaak ekrna basıyorum</h4>
+print_r($redis->getHashFull("all"));<h4>Tanımladığım hash değerini array olarak ekrna basıyorum Eğer boş ise silme işlemi başarılı</h4>
 
 
