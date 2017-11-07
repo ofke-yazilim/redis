@@ -1,5 +1,5 @@
 
-# A) REDİS SERVİSİN WİNDOW ÜZERİNE KURULUM AŞAMALARI
+# A) REDİS SERVİSİN WİNDOWS ÜZERİNE KURULUM AŞAMALARI
 
 <ul>
 <li>1- https://github.com/MicrosoftArchive/redis/releases adresi üzerinden windows için redis dosyaları zip olarak indirilir.</li>
