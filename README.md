@@ -9,7 +9,7 @@
 
 <em>$redis = new redis_();</em>
 
-<h4>Redis portuna bağlanılıyor
+<h4>Redis portuna bağlanılıyor</h4>
 
 $redis->redisConnect();
 
