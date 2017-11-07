@@ -12,6 +12,11 @@
 <li>6- Redis kullanıma hazır.</li>
 </ul>
 
+<div class="alert alert-info fade in alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+    <strong>Önemli Bilgi!</strong> Yukarıda bulunan uygulamada redis klasöründe bulunan redis_.php dosyası, içerisinde 
+    redis servisinin çalışmasını sağlayan funksiyonları barındıran redis sınıfı bulunmaktadır.
+</div>
 
 # B) FONKSİYONLARIN KULLANIMLARI
 
