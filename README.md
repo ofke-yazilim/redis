@@ -35,7 +35,7 @@ $redis->setText("adım","omer faruk");
 
 echo $redis->getText("adım");
 
-<h2><strong>A-1)Redis counter kullanımı.</strong></h2>
+<h2><strong>B-1) Redis counter kullanımı.</strong></h2>
 
 <h4>Sayac redis hafızasına tanımlanıyor</h4>
 $redis->redisCounter(1,"sayac",0);
@@ -49,7 +49,7 @@ echo $redis->redisCounter(2,"sayac",2);
 <h4>Sayac 1 azaltılıyor ve ekrana yazılıyor.</h4>
 echo $redis->redisCounter(3,"sayac",1);
 
-<h2><strong>A-2)HASH KULLANIMI</strong></h2>
+<h2><strong>B-2) HASH KULLANIMI</strong></h2>
 
 <h4>Tek değerili bir hash değeri tanımlıyorum </h4>
 $redis->setHashSingle("omer","faruk","kesmez");
