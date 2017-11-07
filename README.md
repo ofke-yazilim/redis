@@ -45,12 +45,12 @@ $data = array("name"=>"ömer faruk","surname"=>"KESMEZ","yaş"=>27,"meslek"=>"m�
 
 $redis->setHashAll("all",$data);<h4>Redis içerisine array değerleri hash olarak koyuyorum</h4>
 
-print_r($redis->getHashFull("all"));<h4>Tanımladığım hash değerini array olaak ekrna basıyorum</h4></h4>
+print_r($redis->getHashFull("all"));<h4>Tanımladığım hash değerini array olaak ekrna basıyorum</h4>
 
-$redis->deleteHash("all");<h4>Tanımlanmış hash siliniyor
+$redis->deleteHash("all");<h4>Tanımlanmış hash siliniyor</h4>
 
 echo  "<br>-------------------------------<br>Silindimi : <br>";
 
-print_r($redis->getHashFull("all"));<h4>/Tanımladığım hash değerini array olaak ekrna basıyorum</h4>
+print_r($redis->getHashFull("all"));<h4>Tanımladığım hash değerini array olaak ekrna basıyorum</h4>
 
 
