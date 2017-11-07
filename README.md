@@ -13,7 +13,7 @@
 
 $redis->redisConnect();
 
-<h4>Redis set methodu kullanıldı
+<h4>Redis set methodu kullanıldı</h4>
 
 $redis->setText("adım","omer faruk");
 
