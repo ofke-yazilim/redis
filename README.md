@@ -49,7 +49,7 @@ $redis->deleteHash("omer","faruk");
 echo "Silindimi : ". $redis->getHashSingle("omer","faruk");
 
 $data = array("name"=>"ömer faruk","surname"=>"KESMEZ","yaş"=>27,"meslek"=>"mühendis");
-<h4>Redis içerisine array değerleri hash olarak koyuyorum çok boyutlu hash değeri kullanıyorum all anahtarına $data arrayını atıyorum</h4>
+<h4>Redis içerisine array değerleri hash olarak koyuyorum çok boyutlu hash değeri kullanıyorum </h4>
 $redis->setHashAll("all",$data);
 
 <h4>Tanımladığım hash değerini array olaak ekrna basıyorum</h4>
@@ -58,6 +58,7 @@ print_r($redis->getHashFull("all"));
 <h4>Tanımlanmış hash siliniyor</h4>
 $redis->deleteHash("all");
 
-print_r($redis->getHashFull("all"));<h4>Tanımladığım hash değerini array olarak ekrna basıyorum Eğer boş ise silme işlemi başarılı</h4>
+<h4>Tanımladığım hash değerini array olarak ekrna basıyorum Eğer boş ise silme işlemi başarılı</h4>
+print_r($redis->getHashFull("all"));
 
 
