@@ -7,7 +7,7 @@
 
 <h4>Class çağrılıyor.</h4>
 
-<em>$redis = new redis_();</em>
+$redis = new redis_();
 
 <h4>Redis portuna bağlanılıyor</h4>
 
@@ -35,11 +35,11 @@ echo $redis->redisCounter(3,"sayac",1);<h4>Sayac 1 azaltılıyor ve ekrana yazı
 
 $redis->setHashSingle("omer","faruk","kesmez");
 
-echo $redis->getHashSingle("omer","faruk")."<br>";
+echo $redis->getHashSingle("omer","faruk");
 
 $redis->deleteHash("omer","faruk");<h4>Yukarıda tanımladığım hash değerini siliyorum</h4>
 
-echo "Silindimi : ". $redis->getHashSingle("omer","faruk");
+echo "Silindimi : ". $redis->getHashSingle("omer","faruk");<h4>Eğer silinme başarılı ise getHashSingle boş değer döner.</h4>
 
 $data = array("name"=>"ömer faruk","surname"=>"KESMEZ","yaş"=>27,"meslek"=>"mühendis");
 
