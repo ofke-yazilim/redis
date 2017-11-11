@@ -22,7 +22,11 @@ echo "Silindimi : ". $redis->getHashSingle("omer","faruk")."<br>";
 $data = array("name"=>"ömer faruk","surname"=>"KESMEZ","yaş"=>27,"meslek"=>"mühendis");
 $redis->setHashAll("all",$data);//Redis içerisine array değerleri hash olarak koyuyorum
 print_r($redis->getHashFull("all"));//Tanımladığım hash değerini array olaak ekrna basıyorum
+
+//Hash içerisine Array tanımlarken içi içe array var ise kullanılacak fonksiyon
+$data = array(0=>array("id"=>1,"name"=>"omer"),1=>array("id"=>2,"name"=>"faruk")) $redis->setHashAllMultiArray("all",$data);
+//Yukarıda Tanımlanan iç içe array için Hash değeri ekrana basılıyor.
+print_r($redis->getHashFullMultiArray("all"));
+
 $redis->deleteHash("all");//Tanımlanmış hash siliniyor
 echo  "<br>-------------------------------<br>Silindimi : <br>";
-print_r($redis->getHashFull("all"));//Tanımladığım hash değerini array olaak ekrna basıyorum
-
