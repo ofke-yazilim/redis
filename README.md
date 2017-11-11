@@ -73,6 +73,13 @@ $redis->setHashAll("all",$data);
 <h4>Tanımladığım hash değerini array olaak ekrna basıyorum</h4>
 print_r($redis->getHashFull("all"));
 
+<h4>Hash içerisine Array tanımlarken içi içe array var ise kullanılacak fonksiyon</h4>
+$data = array(0=>array("id"=>1,"name"=>"omer"),1=>array("id"=>2,"name"=>"faruk"))
+$redis->setHashAllMultiArray("all",$data);
+
+<h4>Yukarıda Tanımlanan iç içe array için Hash değeri ekrana basılıyor.</h4>
+print_r($redis->getHashFullMultiArray("all"));
+
 <h4>Tanımlanmış hash siliniyor</h4>
 $redis->deleteHash("all");
 
