@@ -70,7 +70,7 @@ $data = array("name"=>"ömer faruk","surname"=>"KESMEZ","yaş"=>27,"meslek"=>"m�
 <h4>Redis içerisine array değerleri hash olarak koyuyorum çok boyutlu hash değeri kullanıyorum </h4>
 $redis->setHashAll("all",$data);
 
-<h4>Tanımladığım hash değerini array olaak ekrna basıyorum</h4>
+<h4>Tanımladığım hash değerini array olarak ekrana basıyorum</h4>
 print_r($redis->getHashFull("all"));
 
 <h4>Hash içerisine Array tanımlarken içi içe array var ise kullanılacak fonksiyon</h4>
@@ -82,8 +82,5 @@ print_r($redis->getHashFullMultiArray("all"));
 
 <h4>Tanımlanmış hash siliniyor</h4>
 $redis->deleteHash("all");
-
-<h4>Tanımladığım hash değerini array olarak ekrna basıyorum Eğer boş ise silme işlemi başarılı</h4>
-print_r($redis->getHashFull("all"));
 
 
