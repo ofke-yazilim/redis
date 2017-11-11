@@ -96,6 +96,41 @@ class redis_ {
         }
     }
     
+    //hmset methodu kullanılarak belirtilen anahtara birçok değer tanımlanır.
+    //setHashAll fonksiyonundan farklı olarak array içerisinde array içeren değerler gönderilebilir.
+    public function setHashAllMultiArray($hashKey,$values = array()){
+        /*
+         *  Örnek Kullanım :
+            $redis->hmset($key, [
+                0 =>[ 
+                   'age' => 44,
+                   'country' => 'finland',
+                   'occupation' => 'software engineer',
+                   'reknown' => 'linux kernel'
+                ],
+                1 =>[ 
+                   'age' => 45,
+                   'country' => 'turkey',
+                   'occupation' => 'software engineer',
+                   'reknown' => 'linux kernel'
+                ],
+            ]);
+        */
+        //Array ile gelen data içerisinde kaç array daha barındırıyor bakılıyor.
+        $boyut = count($values);
+        //Toplam boyut belirleniyor.
+        $this->setText($hashKey."boyut",$boyut);
+        $i=0;
+        try {
+            foreach ($values as $key => $value) {
+                $this->setHashAll($hashKey.$i."tr", $value);
+                $i++;
+            }
+        } catch (Exception $ex) {
+            return "hata";
+        }
+    }
+    
     //hget methodunu kullanrak sadece belirtilen anahtara atanan tek değer alınır.
     public function getHashSingle($hashKey,$key){
         /*
@@ -104,6 +139,21 @@ class redis_ {
         */
         try {
             return $this->redis->hget($hashKey,$key);
+        } catch (Exception $ex) {
+            return "hata";
+        }
+    }
+    
+    //hget methodunu kullanrak sadece belirtilen anahtara atanan tek değer alınır.
+    public function getHashFullMultiArray($hashKey){
+        //Redis hafızasına alınan data boyutu
+        $boyut = $this->getText($hashKey."boyut");
+        $i = 0;
+        try {
+            for($i;$i<$boyut;$i++){
+                $data[] = $this->redis->hgetall($hashKey.$i."tr");
+            }
+            return $data;
         } catch (Exception $ex) {
             return "hata";
         }
