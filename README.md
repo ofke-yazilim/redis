@@ -83,4 +83,10 @@ print_r($redis->getHashFullMultiArray("all"));
 <h4>Tanımlanmış hash siliniyor</h4>
 $redis->deleteHash("all");
 
+<h3>İç içe 3 arraydan oluşan datanın örnek kullanımı için aşağıdaki linki tıklayınız<h3>
+https://github.com/ofke-yazilim/redis/blob/master/redis/3boyutluArrayRedis.php
+
+<h3>İç içe 4 arraydan oluşan datanın örnek kullanımı için aşağıdaki linki tıklayınız<h3>
+https://github.com/ofke-yazilim/redis/blob/master/redis/4boyutluArrayRedis.php
+
 
