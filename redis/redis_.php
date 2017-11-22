@@ -173,6 +173,133 @@ class redis_ {
         }
     }
     
+    //setHashAllMultiArray fonksiyonundan farklı olarak içi içe 3 array verisini ve iç içe 4 array verisini çalıştırır çalıştırır içeren değerler gönderilebilir.
+    public function setHashAllMultiArray3Sıze($hashKey,$values = array()){
+        /*
+         *  Örnek Kullanım :
+            $redis->hmset($key,$yeni = array(
+                0=>array(
+                    "ad"=>
+                        array(
+                          0=>"Ömer",
+                          1=>"Faruk"
+                        ),
+                    "soyad"=>
+                        array(
+                          0=>"soyad1",
+                          1=>"soyad2"
+                        ),
+                    "kisaca"=>
+                        array(
+                          0=>"1.81",
+                          1=>"98kg",
+                          2=>"44beden"
+                        )
+                    ),
+                1=>array(
+                    "ad"=>"Nuriye",
+                    "soyad"=>
+                        array(
+                          0=>"Yıldız",
+                          1=>"Kesmez"
+                        ),
+                    "kisaca"=>
+                        array(
+                          0=>"1.70",
+                          1=>"60kg",
+                          2=>"30beden",
+                          3=>"Beyaz"
+                        )
+                    ),
+                2=>array(
+                    "ad"=>"HALİL",
+                    "soyad"=>
+                        array(
+                          0=>"",
+                          1=>"Kesmez"
+                        ),
+                    "kisaca"=>
+                        array(
+                          0=>"1.82",
+                          1=>"71kg",
+                          2=>""
+                        )
+                    )
+                )
+            );
+        */
+        //Array ile gelen data içerisinde kaç array daha barındırıyor bakılıyor.
+        $boyut = count($values);
+        //Toplam boyut belirleniyor.
+        $this->setText($hashKey."boyut3",$boyut);
+        $i=0;
+        try { 
+            foreach ($values as $key => $value) {
+                if(is_array($value)){
+                    $this->setText($hashKey.$i."tr_",$key);//array taşın sütun adı alınıyor
+                    $this->setHashAll($hashKey.$i."tr", $value); 
+                    $k=0;
+                    foreach ($value as $key2 => $val){
+                        if(is_array($val)){//İç içe üçüncü bir array mevcut ise
+                            $this->setText($hashKey.$i.$k."tr__",$key2);
+//                            $this->setHashAll($hashKey.$i."tr".$key2, $val);
+                            $j=0;
+                            foreach ($val as $key3 => $v){
+                                if(is_array($v)){
+                                    $this->setText($hashKey.$i."trkntrl".$key2,1);
+                                    $this->setHashAll($hashKey.$i."tr".$key2.$j,$v);
+                                } else{
+                                    $this->setHashAll($hashKey.$i."tr".$key2, $val);
+                                }
+                                $j++;
+                                $this->setText($hashKey.$i."trsyc".$key2, $j);
+                            }
+                        }
+                    $k++;
+                    }					
+                } 
+                $i++;
+            }
+//            exit;
+        } catch (Exception $ex) {
+            return "hata";
+        }
+    }
+    
+    //iç içe 3 ya da 4 array hash değerini getirir.
+    public function getHashFullMultiArray3Sıze($hashKey){
+        //Redis hafızasına alınan data boyutu
+        $boyut = $this->getText($hashKey."boyut3");
+        $i = 0;
+        try {
+            for($i;$i<$boyut;$i++){
+                $data[$this->getText($hashKey.$i."tr_")] = $this->redis->hgetall($hashKey.$i."tr");
+                $j=0;
+                foreach ($data[$this->getText($hashKey.$i."tr_")] as $value){
+                    if($value == "Array"){
+                        $key = $this->getText($hashKey.$i.$j."tr__");
+//                        $data[$this->getText($hashKey.$i."tr_")][$key] = $this->getHashFull($hashKey.$i."tr".$key);
+                        if($this->getText($hashKey.$i."trkntrl".$key)==1){
+                            $sayac = $this->getText($hashKey.$i."trsyc".$key);
+                            unset($data[$this->getText($hashKey.$i."tr_")][$key]);
+                            for($k=0;$k<$sayac;$k++){
+                               $data[$this->getText($hashKey.$i."tr_")][$key][$k]= $this->getHashFull($hashKey.$i."tr".$key.$k);
+                            }
+                        } else{
+                            $data[$this->getText($hashKey.$i."tr_")][$key] = $this->getHashFull($hashKey.$i."tr".$key);
+                        }
+                    }
+                    $j++;
+                }
+            }
+            print_r($data);
+            exit;
+            return $data;
+        } catch (Exception $ex) {
+            return "hata";
+        }
+    }
+    
     //hdel methodu ile redis hafızasına tanımlamış olduğum hash değerini silebilirim.
     public function deleteHash($hashKey,$key=null){
         /*
@@ -184,7 +311,7 @@ class redis_ {
             if($key){
                 $this->redis->hdel($hashKey,$key);
             } else{
-                $this->redis->delete($this->redis->keys($hashKey));
+                $this->redis->delete($this->redis->keys($hashKey."*"));
             }
         } catch (Exception $ex) {
             return "hata";
@@ -196,4 +323,5 @@ class redis_ {
         $this->redis->expire($key, $time); // expires in 1 hour
 //        $this->redis->expireat($key, time() + 3600); // expires in 1 hour 
     }
+	
 }
