@@ -1,15 +1,15 @@
 <?php
 //Redis servis aktif ediliyor
-include 'includes/redis.php';
+include 'redis_.php';
 $redis = new redis_();
-$redis->redisConnect();//Redis servisi portuna bağlanıyor
+$redis->redisConnect();//Redis servisi portuna baÄŸlanÄ±yor
 
-//iç içe 3 array yapısı için örnek array
+//iÃ§ iÃ§e 3 array yapÄ±sÄ± iÃ§in Ã¶rnek array
 $yeni = array(
     0=>array(
         "ad"=>
             array(
-              "1.ad"=>array(0=>"Ömer",1=>"Ömürlü"),
+              "1.ad"=>array(0=>"Ã–mer",1=>"Ã–mÃ¼rlÃ¼"),
               "2.ad"=>array(0=>"Faruk",1=>"Adeletli"),
               "3.ad"=>"yok"
             ),
@@ -29,7 +29,7 @@ $yeni = array(
         "ad"=>"Nuriye",
         "soyad"=>
             array(
-              0=>"Yıldız",
+              0=>"YÄ±ldÄ±z",
               1=>"Kesmez"
             ),
         "kisaca"=>
@@ -41,7 +41,7 @@ $yeni = array(
             )
         ),
     2=>array(
-        "ad"=>"HALİL",
+        "ad"=>"HALÄ°L",
         "soyad"=>
             array(
               0=>"",
@@ -56,8 +56,8 @@ $yeni = array(
         )
     );
 
-//Yukarıda tanılmlı olan array verisini redis üzerinde tanımlıyoruz ve alıyoruz.
-echo $redis->deleteHash("_hafiza");//Daha önce bu key yani _hafiza isminde redis hafızası oluşturduk ise siliyoruz
-$redis->setHashAllMultiArray3Sıze("_hafiza",$yeni);//Yukarıda tanımladığımız iç içe 4 array verisini redis hafızasına attık.
-$data  = $redis->getHashFullMultiArray3Sıze("_hafiza");//_hafiza anahtarı ile redis hafızasına tanımladığımız array verisini alıyoruz.
-print_r($data);//Aldığımız veriyi ekrana basıyoruz.
+//YukarÄ±da tanÄ±lmlÄ± olan array verisini redis Ã¼zerinde tanÄ±mlÄ±yoruz ve alÄ±yoruz.
+echo $redis->deleteHash("_hafiza");//Daha Ã¶nce bu key yani _hafiza isminde redis hafÄ±zasÄ± oluÅŸturduk ise siliyoruz
+$redis->setHashAllMultiArray3SÄ±ze("_hafiza",$yeni);//YukarÄ±da tanÄ±mladÄ±ÄŸÄ±mÄ±z iÃ§ iÃ§e 4 array verisini redis hafÄ±zasÄ±na attÄ±k.
+$data  = $redis->getHashFullMultiArray3SÄ±ze("_hafiza");//_hafiza anahtarÄ± ile redis hafÄ±zasÄ±na tanÄ±mladÄ±ÄŸÄ±mÄ±z array verisini alÄ±yoruz.
+print_r($data);//AldÄ±ÄŸÄ±mÄ±z veriyi ekrana basÄ±yoruz.
