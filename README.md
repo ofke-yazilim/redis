@@ -89,4 +89,7 @@ https://github.com/ofke-yazilim/redis/blob/master/redis/3boyutluArrayRedis.php
 <h3>İç içe 4 arraydan oluşan datanın örnek kullanımı için aşağıdaki linki tıklayınız<h3>
 https://github.com/ofke-yazilim/redis/blob/master/redis/4boyutluArrayRedis.php
 
+<h3>İç içe 2 arraydan oluşan datanın örnek kullanımı için aşağıdaki linki tıklayınız<h3>
+https://github.com/ofke-yazilim/redis/blob/master/redis/2boyutluArrayRedis.php
+
 
