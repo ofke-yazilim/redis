@@ -173,7 +173,7 @@ class redis_ {
         }
     }
     
-    //setHashAllMultiArray fonksiyonundan farklı olarak içi içe 3 array verisini ve iç içe 4 array verisini çalıştırır çalıştırır içeren değerler gönderilebilir.
+        //setHashAllMultiArray fonksiyonundan farklı olarak içi içe 3 array verisini ve iç içe 4 array verisini çalıştırır çalıştırır içeren değerler gönderilebilir.
     public function setHashAllMultiArray3Sıze($hashKey,$values = array()){
         /*
          *  Örnek Kullanım :
@@ -245,6 +245,7 @@ class redis_ {
 //                            $this->setHashAll($hashKey.$i."tr".$key2, $val);
                             $j=0;
                             foreach ($val as $key3 => $v){
+                                $this->setText($hashKey.$i."trkey3".$key2.$j,$key3);
                                 if(is_array($v)){
                                     $this->setText($hashKey.$i."trkntrl".$key2,1);
                                     $this->setHashAll($hashKey.$i."tr".$key2.$j,$v);
@@ -283,7 +284,36 @@ class redis_ {
                             $sayac = $this->getText($hashKey.$i."trsyc".$key);
                             unset($data[$this->getText($hashKey.$i."tr_")][$key]);
                             for($k=0;$k<$sayac;$k++){
-                               $data[$this->getText($hashKey.$i."tr_")][$key][$k]= $this->getHashFull($hashKey.$i."tr".$key.$k);
+//                                $data[$this->getText($hashKey.$i."tr_")][$key][$k]= $this->getHashFull($hashKey.$i."tr".$key.$k);
+                               $anahtar = $this->getText($hashKey.$i."trkey3".$key.$k);
+//                               $anahtar = $k;
+                               if(count($this->getHashFull($hashKey.$i."tr".$key.$k))>0){
+                                    $data[$this->getText($hashKey.$i."tr_")][$key][$anahtar]= $this->getHashFull($hashKey.$i."tr".$key.$k);
+                               } else{
+                                    $data[$this->getText($hashKey.$i."tr_")][$key][$anahtar]= $this->getHashFull($hashKey.$i."tr".$key);
+                                    $b=0;
+                                    $_boyut = count($data[$this->getText($hashKey.$i."tr_")][$key][$anahtar]);
+                                    foreach ($data[$this->getText($hashKey.$i."tr_")][$key][$anahtar] as $key2 => $v){
+                                        if($i==2){
+                                            echo $key2."-$v-$k<br>";
+                                            echo "boyut-".$_boyut;
+                                        }
+                                        
+                                        if($b!=$k){
+                                            unset($data[$this->getText($hashKey.$i."tr_")][$key][$anahtar][$key2]);
+                                        } else{
+                                            $_real = $data[$this->getText($hashKey.$i."tr_")][$key][$anahtar][$key2];
+                                            $sira  = $anahtar;
+                                        }
+                                       
+                                        $b++;
+                                        if($b==$_boyut){
+                                            unset($data[$this->getText($hashKey.$i."tr_")][$key][$sira]);
+                                            $data[$this->getText($hashKey.$i."tr_")][$key][$sira] = $_real;
+                                        }
+                                        
+                                    }
+                               }
                             }
                         } else{
                             $data[$this->getText($hashKey.$i."tr_")][$key] = $this->getHashFull($hashKey.$i."tr".$key);
@@ -292,8 +322,8 @@ class redis_ {
                     $j++;
                 }
             }
-            print_r($data);
-            exit;
+//            print_r($data);
+//            exit;
             return $data;
         } catch (Exception $ex) {
             return "hata";
